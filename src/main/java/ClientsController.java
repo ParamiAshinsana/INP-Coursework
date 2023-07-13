@@ -35,4 +35,7 @@ public class ClientsController extends Thread{
             e.printStackTrace();
         }
     }
+    public void run(){
+
+    }
 }

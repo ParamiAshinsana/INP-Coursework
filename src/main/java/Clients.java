@@ -18,4 +18,29 @@ public class Clients extends Thread{
         this.writer = new PrintWriter(socket.getOutputStream(), true);
     }
 
+    public void run() {
+        try {
+            String msg;
+            while ((msg = reader.readLine()) != null) {
+                if (msg.equalsIgnoreCase( "exit")) {
+                    break;
+                }
+                for (Clients cl : clientsArrayList) {
+                    cl.writer.println(msg);
+                }
+            }
+        } catch (Exception e) {
+            // e.printStackTrace();
+        }
+        finally {
+            try {
+                reader.close();
+                writer.close();
+                socket.close();
+            } catch (IOException e) {
+                // e.printStackTrace();
+            }
+        }
+    }
+
 }

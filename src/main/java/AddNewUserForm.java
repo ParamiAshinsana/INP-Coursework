@@ -12,30 +12,18 @@ import javafx.stage.Stage;
 
 import java.io.IOException;
 import java.net.URL;
-import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
 
 public class AddNewUserForm extends Application implements Initializable {
-    public JFXTextField lodingTxt;
-    public Button logingBtn;
 
-    public JFXTextField txtUsername;
-    static String username;
-    public AnchorPane root;
-    public JFXPasswordField txtPassword;
-    public JFXComboBox comUsername;
-    public ArrayList<String> arrayList = new ArrayList<>();
+    public JFXTextField logintxtField;
+    public Button loginSendBtn;
 
-    public void loginOnAction(ActionEvent actionEvent) throws IOException {
-        Stage stage = new Stage();
-        stage.setScene(new Scene(FXMLLoader.load(getClass().getResource("/view/client_form.fxml"))));
-        stage.show();
-    }
 
     @Override
     public void start(Stage stage) throws Exception {
-        stage.setScene(new Scene(FXMLLoader.load(getClass().getResource("/view/login.fxml"))));
+        stage.setScene(new Scene(FXMLLoader.load(getClass().getResource("/view/addnewuser_form.fxml"))));
         stage.show();
 
         new Thread(()->{
@@ -51,5 +39,22 @@ public class AddNewUserForm extends Application implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         //loadUserNames();
+    }
+
+    public void btnAddOnAction(ActionEvent actionEvent) throws IOException {
+        String userName = logintxtField.getText();
+
+
+        //stage.setScene(new Scene(FXMLLoader.load(getClass().getResource("/view/clientsController_form.fxml"))));
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/clientsController_form.fxml"));
+        AnchorPane anchorPane = loader.load();
+        ClientsController clientsController = loader.getController();
+        clientsController.setLabel(userName);
+        Scene scene = new Scene(anchorPane);
+        Stage stage = new Stage();
+        stage.setScene(scene);
+        stage.show();
+        stage.setTitle(userName+" Form");
+        logintxtField.setText("");
     }
 }

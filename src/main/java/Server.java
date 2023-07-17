@@ -7,7 +7,7 @@ public class Server {
     private static ArrayList<Clients> clientsArrayList = new ArrayList<>();
 
     public static void Server() throws IOException {
-        ServerSocket serverSocket = new ServerSocket(9000);
+        ServerSocket serverSocket = new ServerSocket(5000);
         Socket socket;
         int index = 1;
         while (true) {

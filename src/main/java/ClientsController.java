@@ -13,6 +13,11 @@ public class ClientsController extends Thread{
     public Button sendButton;
     public Label userNamelbl;
 
+    public JFXTextField clientTxtField;
+    public Button msgSendBtn;
+    public Label userNameLbl;
+
+
     PrintWriter writer;
 
     BufferedReader reader;
@@ -25,17 +30,23 @@ public class ClientsController extends Thread{
 //        emojiLoad();
 //        emojiPane.setVisible(false);
 //        lblClientName.setText(AddNewUserFormController.username);
-        try {
-            socket = new Socket("localhost",9000);
-            System.out.println("Socket is connected with server!");
-            reader = new BufferedReader(new InputStreamReader(socket.getInputStream()));
-            writer = new PrintWriter(socket.getOutputStream(), true);
-            this.start();
-        }catch (IOException e){
-            e.printStackTrace();
-        }
+
+
+
+//        try {
+//            socket = new Socket("localhost",9000);
+//            System.out.println("Socket is connected with server!");
+//            reader = new BufferedReader(new InputStreamReader(socket.getInputStream()));
+//            writer = new PrintWriter(socket.getOutputStream(), true);
+//            this.start();
+//        }catch (IOException e){
+//            e.printStackTrace();
+//        }
     }
     public void run(){
 
+    }
+    public void setLabel(String userName) {
+        userNameLbl.setText(userName+" 's Chat Room");
     }
 }
